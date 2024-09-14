@@ -36,23 +36,52 @@ public class POEp1 {
                System.out.println("Username is not correctly formatted, please ensure that the username contains an underscore and is no more than 5 characters in length");
            }
    
-                   
+            
            
-          
-          
-          
-          
-        
-        //Prompt the user to enter their pasword
-        System.out.print(" Enter your Password:");
-        password = input.nextLine();
-        
-        if(username.equals(" ")&& (password.equals(" "))){
-            System.out.println(" ");
-        }else{
-            System.out.println(" ");
+           
+      
+        // Prompt the user to enter their password
+        System.out.print("Enter your Password: ");
+       password = input.nextLine();
+        // Validate password
+        if (password.length() > 7) {
+            if (checkPass(password)) {
+                System.out.println("Password successfully captured");
+            } else {
+                System.out.println("Password is not correctly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number, and a special character.");
+            }
+        } else {
+            System.out.println("Password is not correctly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number, and a special character.");
         }
-        
-        
+    }
+
+    // Check password (validation logic)
+    public static boolean checkPass(String password) {
+        boolean hasNum = false;
+        boolean hasCap = false;
+        boolean hasLow = false;
+        boolean hasSpecial = false;
+        char c;
+
+        for (int i = 0; i < password.length(); i++) {
+            c = password.charAt(i);
+            if (Character.isDigit(c)) {
+                hasNum = true;
+            } else if (Character.isUpperCase(c)) {
+                hasCap = true;
+            } else if (Character.isLowerCase(c)) {
+                hasLow = true;
+            } else if ("!@#$%^&*()_+[]{}|;:,.<>?".indexOf(c) >= 0) { // Check for special characters
+                hasSpecial = true;
+            }
+        }
+
+        return hasNum && hasCap && hasLow && hasSpecial;
     }
 }
+                
+            
+        
+      
+        
+
