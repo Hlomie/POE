@@ -11,6 +11,6 @@ package com.mycompany.poep1;
 public class POEp1 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
     }
 }
