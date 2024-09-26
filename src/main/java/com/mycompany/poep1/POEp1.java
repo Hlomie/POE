@@ -18,31 +18,28 @@ public class POEp1 {
         String username;
         String password;
         
-        //Create a Scanner to read the outputs
+ // Create a Scanner to read the outputs
         Scanner input = new Scanner(System.in);
-        
-        //Prompt the user to enter their username
+
+        // Prompt the user to enter their username
         System.out.print("Enter your Username:");
         username = input.nextLine();
-        
-           //Regex: define the pattern for validation
-           Pattern pattern = Pattern.compile( "^(?=.*[a-zA-Z0-9])[a-zA-Z0-9_]+$");
-           Matcher matcher = pattern.matcher(username);
-           
-           //Check if the user name contains an underscore and is no more than 5 characters in length
-           if(username.contains("_") && matcher.matches()){
-               System.out.println("Username is successfully captured");
-           }else{
-               System.out.println("Username is not correctly formatted, please ensure that the username contains an underscore and is no more than 5 characters in length");
-           }
-   
-            
-           
-           
-      
+
+        // Regex: define the pattern for validation
+        Pattern pattern = Pattern.compile("^(?=.*[a-zA-Z0-9])[a-zA-Z0-9_]+$");
+        Matcher matcher = pattern.matcher(username);
+
+        // Check if the user name contains an underscore and is no more than 5 characters in length
+        if (username.contains("_") && matcher.matches()) {
+            System.out.println("Username is successfully captured");
+        } else {
+            System.out.println("Username is not correctly formatted, please ensure that the username contains an underscore and is no more than 5 characters in length");
+        }
+
         // Prompt the user to enter their password
         System.out.print("Enter your Password: ");
-       password = input.nextLine();
+        password = input.nextLine();
+
         // Validate password
         if (password.length() > 7) {
             if (checkPass(password)) {
@@ -53,9 +50,16 @@ public class POEp1 {
         } else {
             System.out.println("Password is not correctly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number, and a special character.");
         }
+
+        // Boolean for username and password validation
+        if (IsUsernameAndPasswordCorrect(username, password)) {
+            System.out.println("Welcome <user first name>, <user last name> it is great to see you!");
+        } else {
+            System.out.println("Username or password is incorrect, please try again.");
+        }
     }
 
-    // Check password (validation logic)
+    // Check password
     public static boolean checkPass(String password) {
         boolean hasNum = false;
         boolean hasCap = false;
@@ -71,17 +75,22 @@ public class POEp1 {
                 hasCap = true;
             } else if (Character.isLowerCase(c)) {
                 hasLow = true;
-            } else if ("!@#$%^&*()_+[]{}|;:,.<>?".indexOf(c) >= 0) { // Check for special characters
+            } else if ("!@#$%^&*()_+[]{}|;:,.<>?".indexOf(c) >= 0) {
+              
                 hasSpecial = true;
             }
         }
 
         return hasNum && hasCap && hasLow && hasSpecial;
     }
-}
-                
-            
-        
-      
-        
 
+    // Method to check if both username and password are correct
+    public static boolean IsUsernameAndPasswordCorrect(String username, String password) {
+  
+        boolean isUsernameValid = username.contains("_") && username.length() <= 5;
+        boolean isPasswordValid = checkPass(password);
+
+        // Return true if both username and password are valid
+        return isUsernameValid && isPasswordValid;
+    }
+}
