@@ -16,6 +16,8 @@ public class POEp1 {
         
         //Declarations of variables and initializing
         String username;
+        String firstname;
+        String lastname;
         String password;
         
  // Create a Scanner to read the outputs
@@ -24,10 +26,17 @@ public class POEp1 {
         // Prompt the user to enter their username
         System.out.print("Enter your Username:");
         username = input.nextLine();
+        
+        System.out.print("Enter your Firstname:");
+        firstname = input.nextLine();
+        
+        System.out.print("Enter your Lastname:");
+        lastname = input.nextLine();
 
         // Regex: define the pattern for validation
         Pattern pattern = Pattern.compile("^(?=.*[a-zA-Z0-9])[a-zA-Z0-9_]+$");
         Matcher matcher = pattern.matcher(username);
+       
 
         // Check if the user name contains an underscore and is no more than 5 characters in length
         if (username.contains("_") && matcher.matches()) {
@@ -53,7 +62,7 @@ public class POEp1 {
 
         // Boolean for username and password validation
         if (IsUsernameAndPasswordCorrect(username, password)) {
-            System.out.println("Welcome <user first name>, <user last name> it is great to see you!");
+            System.out.println("Welcome " + firstname   + lastname + ", it is great to see you!");
         } else {
             System.out.println("Username or password is incorrect, please try again.");
         }
