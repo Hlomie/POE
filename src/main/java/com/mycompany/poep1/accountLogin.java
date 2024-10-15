@@ -9,7 +9,10 @@ package com.mycompany.poep1;
  * @author RC_Student_lab
  */
 public class accountLogin {
+
     private String storedUsername;
+    private String storedFirstname;
+    private String storedLastname;
     private String storedPassword;
 
     // Constructor for the class
@@ -52,8 +55,8 @@ public class accountLogin {
         return hasNum && hasCap && hasLow && hasSpecial;
     }
 
-    // Method 3: String registerUser
-    public String registerUser(String username, String password) {
+    // Method 3: String registerUser 
+    public String registerUser (String username, String firstname, String lastname, String password) {
         // Register user 
         if (!checkUserName(username)) {
             return "Username is incorrectly formatted. It must contain an underscore and be no more than 5 characters.";
@@ -61,8 +64,10 @@ public class accountLogin {
             return "Password does not meet complexity requirements. It must be at least 8 characters long, contain a capital letter, a number, and a special character.";
         } else {  
             this.storedUsername = username;
+            this.storedFirstname = firstname;
+            this.storedLastname = lastname;
             this.storedPassword = password;
-            return "User has been registered successfully!";
+            return "User  has been registered successfully!";
         }
     }
 
@@ -71,24 +76,4 @@ public class accountLogin {
         // Verify that login details
         return username.equals(this.storedUsername) && password.equals(this.storedPassword);
     }
-
-    // Method 5: String returnLoginStatus
-    public String returnLoginStatus(String username, String password) {
-        if (loginUser(username, password)) {
-            return "Login successful. Welcome!";
-        } else {
-         return "Login failed. Incorrect username or password.";
-        }
-    }
-
-    // Main method for testing the functionality
-    public static void main(String[] args) {
-        accountLogin login = new accountLogin();
-        System.out.println(login.registerUser(" ", " "));
-        System.out.println(login.returnLoginStatus(" ", " "));   
-        }
-                }
-    
-  
-
-
+}
