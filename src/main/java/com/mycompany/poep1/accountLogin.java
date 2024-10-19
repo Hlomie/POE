@@ -15,54 +15,38 @@ public class accountLogin {
     private String storedLastname;
     private String storedPassword;
 
-    // Constructor for the class
     public accountLogin() {
+        
     }
-
-    // Method 1: Boolean checkUserName
+    //Method 1: Boolean checkUserName 
     public boolean checkUserName(String username) {
-        // Ensure username contains an underscore and is no more than 5 characters
-        if(username.contains("_") && username.length() <= 5) {
-            return true;
-        } else {
-            return false;
-        }
+        //Ensure that the username contains underscore and is no more than 5 characters
+        
+        return username.contains("_") && username.length() <= 5;
     }
-    // Method 2: Boolean checkPasswordComplexity
+    //Method 2: Boolean checkPasswordComplexity
     public boolean checkPasswordComplexity(String password) {
-        // Ensure password is at least 8 characters, contains uppercase, number, and special character
-        boolean hasNum = false;
-        boolean hasCap = false;
-        boolean hasLow = false;
-        boolean hasSpecial = false;
-        char c;
+        //Ensure that boolean has atleast 8 characters, contains uppercase, lowercase, number and a special character
+        boolean hasNum = false, hasCap = false, hasLow = false, hasSpecial = false;
 
         if (password.length() >= 8) {
-            for (int i = 0; i < password.length(); i++) {
-                c = password.charAt(i);
-                if (Character.isDigit(c)) {
-                    hasNum = true;
-                } else if (Character.isUpperCase(c)) {
-                    hasCap = true;
-                } else if (Character.isLowerCase(c)) {
-                   hasLow = true;
-                } else if ("!@#$%^&*()_+[]{}|;:,.<>?".indexOf(c) >= 0) {
-                    hasSpecial = true;
-                }
+            for (char c : password.toCharArray()) {
+                if (Character.isDigit(c)) hasNum = true;
+                else if (Character.isUpperCase(c)) hasCap = true;
+                else if (Character.isLowerCase(c)) hasLow = true;
+                else if ("!@#$%^&*()_+[]{}|;:,.<>?".indexOf(c) >= 0) hasSpecial = true;
             }
         }
-
         return hasNum && hasCap && hasLow && hasSpecial;
     }
-
-    // Method 3: String registerUser 
+    //Method 3: String registerUser
     public String registerUser (String username, String firstname, String lastname, String password) {
-        // Register user 
+        //Register user
         if (!checkUserName(username)) {
             return "Username is incorrectly formatted. It must contain an underscore and be no more than 5 characters.";
         } else if (!checkPasswordComplexity(password)) {
             return "Password does not meet complexity requirements. It must be at least 8 characters long, contain a capital letter, a number, and a special character.";
-        } else {  
+        } else {
             this.storedUsername = username;
             this.storedFirstname = firstname;
             this.storedLastname = lastname;
@@ -70,10 +54,9 @@ public class accountLogin {
             return "User  has been registered successfully!";
         }
     }
-
-    // Method 4: Boolean loginUser
-    public boolean loginUser(String username, String password) {
-        // Verify that login details
+    //Method 4: Boolean LoginUser
+    public boolean loginUser (String username, String password) {
+        //verify login details
         return username.equals(this.storedUsername) && password.equals(this.storedPassword);
     }
 }

@@ -3,94 +3,63 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.poep1;
-import javax.swing.JOptionPane;
+
 /**
  *
  * @author RC_Student_lab
  */
     public class Task {
     private String taskName;
-    private int taskNumber;
     private String taskDescription;
     private String developerDetails;
-    private int taskDuration;
-    private String taskID;
+    private double taskDuration;
+    private int taskNumber;
     private String taskStatus;
+    private String taskID;
 
-    public Task() {
-        this.taskNumber = 0;
-    }
-
-    public void setTaskName(String taskName) {
+    public Task(String taskName, String taskDescription, String developerDetails, double taskDuration, int taskNumber) {
         this.taskName = taskName;
-    }
-
-    public void setTaskDescription(String taskDescription) {
-        if (taskDescription.length() > 50) {
-            JOptionPane.showMessageDialog(null, "Please enter a task description of less than 50 characters");
-        } else {
-            this.taskDescription = taskDescription;
-            JOptionPane.showMessageDialog(null, "Task successfully captured");
-        }
-    }
-
-    public void setDeveloperDetails(String developerDetails) {
+        this.taskDescription = taskDescription;
         this.developerDetails = developerDetails;
-    }
-
-    public void setTaskDuration(int taskDuration) {
         this.taskDuration = taskDuration;
+        this.taskNumber = taskNumber;
+        this.taskID = createTaskID();
+        this.taskStatus = "To Do"; 
+        
+    }
+   
+    public boolean checkTaskDescription(){
+        return taskDescription.length() <=50;
+    }
+    
+     public void setTaskStatus(String status) {
+        this.taskStatus = status;
     }
 
-    public void setTaskStatus(String taskStatus) {
-        this.taskStatus = taskStatus;
-    }
-
-    public boolean checkTaskDescription() {
-        return taskDescription.length() <= 50;
-    }
-
-    public String createTaskID() {
-        String taskID = taskName.substring(0, 2).toUpperCase() + ":" + taskNumber + ":" + developerDetails.substring(developerDetails.length() - 3).toUpperCase();
-        return taskID;
-    }
-
-    public String printTaskDetails() {
-        return "Task Status: " + taskStatus + "\n"
-                + "Developer Details: " + developerDetails + "\n"
-                + "Task Number: " + taskNumber + "\n"
-                + "Task Name: " + taskName + "\n"
-                + "Task Description: " + taskDescription + "\n"
-                + "Task ID: " + createTaskID() + "\n"
-                + "Duration: " + taskDuration + " hours";
-    }
-
-    public int getTaskDuration() {
+    public double getTaskDuration() {
         return taskDuration;
     }
-
-    public String getTaskStatus() {
-        return taskStatus;
+    
+    public String createTaskID  (){
+        String firstTwoLetters = taskName.substring(0, 2).toUpperCase();
+        String lastThreeLetters = developerDetails.substring(developerDetails.length() - 3).toUpperCase();
+        return firstTwoLetters + ":" + taskNumber + ":" + lastThreeLetters;
+    }
+    
+    public String printTaskDetails() {
+        return "Task Status: " + taskStatus + "\n" +
+               "Developer Details: " + developerDetails + "\n" +
+               "Task Number: " + taskNumber + "\n" +
+               "Task Name: " + taskName + "\n" +
+               "Task Description: " + taskDescription + "\n" +
+                "Task ID" +taskID + "\n" +
+               "Duration: " + taskDuration + " hours";
     }
 
-    public String getDeveloperDetails() {
-        return developerDetails;
+   public int returnTotalHours(){
+       return (int) taskDuration;
     }
-
-    public int getTaskNumber() {
-        return taskNumber;
-    }
-
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public String getTaskDescription() {
-        return taskDescription;
-    }
-
-    public String getTaskID() {
-        return createTaskID();
-    }
-}
-
+ 
+       
+   }
+     
