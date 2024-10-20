@@ -3,7 +3,7 @@
  */
 
 package com.mycompany.poep1;
-
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
