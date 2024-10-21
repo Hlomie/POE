@@ -88,10 +88,23 @@ public class POEp1 {
                  int statusOption = Integer.parseInt(statusOptionStr);
                     String taskStatus = "";
                 switch (statusOption) {
-                    case 1: taskStatus = "To Do"; break;
-                    case 2: taskStatus = "Doing"; break;
-                    case 3: taskStatus = "Done"; break;
-                    default: System.out.println("Invalid status. Defaulting to 'To Do'."); taskStatus = "To Do"; break;
+                    case 1:
+        taskStatus = "To Do";
+        JOptionPane.showMessageDialog(null, "Task status set to: " + taskStatus);
+        break;
+    case 2:
+        taskStatus = "Doing";
+        JOptionPane.showMessageDialog(null, "Task status set to: " + taskStatus);
+        break;
+    case 3:
+        taskStatus = "Done";
+        JOptionPane.showMessageDialog(null, "Task status set to: " + taskStatus);
+        break;
+    default:
+        System.out.println("Invalid status. Defaulting to 'To Do'.");
+        taskStatus = "To Do";
+        JOptionPane.showMessageDialog(null, "Invalid option selected. Defaulting to: " + taskStatus);
+        break;
                 }
                 
 
@@ -131,3 +144,4 @@ public class POEp1 {
  }
 
         }
+//hill lilll
