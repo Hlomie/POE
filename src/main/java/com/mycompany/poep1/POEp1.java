@@ -64,7 +64,7 @@ public class POEp1 {
             int taskCount = 0;
             
             while (true) {
-            String menu = "Menu:\n1) Add Task\n2) Show Report (Coming soon)\n3) Quit";
+            String menu = "Menu:\n1) Add Task\n2) Show Report\n3) Quit";
             String optionStr = JOptionPane.showInputDialog(menu + "\nChoose an option:");
             int option = Integer.parseInt(optionStr);
 
@@ -109,9 +109,9 @@ public class POEp1 {
                 
 
                      // Create a new Task object
-                    Task newTask = new Task(taskName, taskDescription, developerDetails, taskDuration, taskCount);
+                    Task newTask = new Task(taskName, taskDescription, developerDetails, taskDuration, taskCount, taskStatus);
                     tasks[taskCount] = newTask; 
-                    totalHours += newTask.returnTotalHours(); 
+                  
                     taskCount++; 
 
                     // Display task details
@@ -121,7 +121,7 @@ public class POEp1 {
                     JOptionPane.showMessageDialog(null, "Maximum number of tasks reached.");
                 }
             } else if (option == 2) {
-                JOptionPane.showMessageDialog(null, "Coming soon");
+                JOptionPane.showMessageDialog(null, "Coming soon!");
             } else if (option == 3) {
                 JOptionPane.showMessageDialog(null, "Exiting application. Goodbye!");
                 break;
@@ -134,12 +134,16 @@ public class POEp1 {
         
         // Display total hours
        StringBuilder taskDetails = new StringBuilder("Tasks Entered:\n");
+       for (Task task : tasks)
+       if (task != null){
+           taskDetails.append(task.printTaskDetails()).append("\n\n");
+       }
     for (Task task : tasks) {
-        if (task != null) { // Check for null to avoid NullPointerException
-            taskDetails.append(task.printTaskDetails()).append("\n\n");
-        }
+       task.getTaskDuration();
     }
-     
+    
+       
+    JOptionPane.showMessageDialog(null,"Total hours: " + totalHours);
      JOptionPane.showMessageDialog(null, taskDetails.toString());
  }
 

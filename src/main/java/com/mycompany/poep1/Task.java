@@ -17,14 +17,14 @@ package com.mycompany.poep1;
     private String taskStatus;
     private String taskID;
 
-    public Task(String taskName, String taskDescription, String developerDetails, double taskDuration, int taskNumber) {
+    public Task(String taskName, String taskDescription, String developerDetails, double taskDuration, int taskNumber, String taskStatus) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.developerDetails = developerDetails;
         this.taskDuration = taskDuration;
         this.taskNumber = taskNumber;
         this.taskID = createTaskID();
-        this.taskStatus = "To Do"; 
+        this.taskStatus = taskStatus; 
         
     }
    
@@ -56,9 +56,6 @@ package com.mycompany.poep1;
                "Duration: " + taskDuration + " hours";
     }
 
-   public int returnTotalHours(){
-       return (int) taskDuration;
-    }
  
        
    }
