@@ -46,7 +46,7 @@ public class accountLogin {
         return hasNum && hasCap && hasLow && hasSpecial;
     }
     //Method 3: String registerUser
-    public String registerUser (String username, String password) {
+    public String registerUser (String username, String firstname, String lastname, String password) {
         //Register user
         if (!checkUserName(username)) {
             return "Username is incorrectly formatted. It must contain an underscore and be no more than 5 characters.";

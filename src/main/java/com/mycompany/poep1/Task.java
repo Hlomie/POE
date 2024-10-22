@@ -56,6 +56,9 @@ package com.mycompany.poep1;
                "Duration: " + taskDuration + " hours";
     }
 
+   public int returnTotalHours(){
+       return (int) taskDuration;
+    }
  
        
    }
