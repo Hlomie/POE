@@ -4,6 +4,7 @@
     
 package com.mycompany.poep1;
 import java.util.Scanner;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.*;
 
@@ -39,7 +40,7 @@ public class POEp1 {
         accountLogin login = new accountLogin(firstname, lastname, username, password);
         
         //register user
-         String registrationMessage = login.registerUser(username, password);
+         String registrationMessage = login.registerUser(firstname, lastname, username, password);
         System.out.println(registrationMessage);
         
         // Check login status if registration was successful
@@ -54,11 +55,16 @@ public class POEp1 {
             
             //Check login status
             if (login.loginUser(loginUsername, loginPassword)) {
+
             JOptionPane.showMessageDialog(dialog,"Welcome to EasyKanban, " + firstname + " " + lastname + "!");
+
+            System.out.println("Welcome to EasyKanban, " + firstname + " " + lastname + "!");
+
 
            //Manage Task
            manageTasks(input);
             }else{
+
                JOptionPane.showMessageDialog(dialog,"Login failed. Exiting application.");
             }
             input.close();
@@ -135,10 +141,83 @@ public class POEp1 {
                 JOptionPane.showMessageDialog(null, "Coming soon!");
             } else if (option == 3) {
                 JOptionPane.showMessageDialog(null, "Exiting application. Goodbye!");
-                break;
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid option. Please try again.");
+                break
+                System.out.println("Login failed. Exiting application.");
             }
+            input.close();
+    }
+    
+        private static void manageTasks(Scanner input){
+            //Ask user how many tasks they would like to enter
+            System.out.print("How many tasks would you like to enter? ");
+            int numOfTasks = input.nextInt();
+            input.nextLine();
+            Task[] tasks = new Task[numOfTasks];
+            int totalHours = 0;
+            int taskCount = 0;
+            
+            while (true) {
+            System.out.println("Menu:");
+            System.out.println("1) Add Task");
+            System.out.println("2) Show Report (Coming soon)");
+            System.out.println("3) Quit");
+            System.out.print("Choose an option: ");
+            int option = input.nextInt();
+            input.nextLine(); 
+
+            if (option == 1) {
+                if (taskCount < numOfTasks) {
+                    System.out.print("Enter task name: ");
+                    String taskName = input.nextLine();
+                    System.out.print("Enter task description: ");
+                    String taskDescription = input.nextLine();
+                    
+                    // Check task description length
+                    if (taskDescription.length() > 50) {
+                        System.out.println("Please enter a task description of less than 50 characters.");
+                        continue; 
+                    }
+                    
+                    System.out.print("Enter developer details: ");
+                    String developerDetails = input.nextLine();
+                    System.out.print("Enter task duration (in hours): ");
+                    double taskDuration = input.nextDouble();
+                    input.nextLine(); 
+                    
+                    // Select task status
+                System.out.println("Select Task Status:");
+                System.out.println("1) To Do");
+                System.out.println("2) Doing");
+                System.out.println("3) Done");
+                String taskStatus = "";
+                int statusOption = input.nextInt();
+                input.nextLine(); // Consume newline
+                switch (statusOption) {
+                    case 1: taskStatus = "To Do"; break;
+                    case 2: taskStatus = "Doing"; break;
+                    case 3: taskStatus = "Done"; break;
+                    default: System.out.println("Invalid status. Defaulting to 'To Do'."); taskStatus = "To Do"; break;
+                }
+                
+
+                     // Create a new Task object
+                    Task newTask = new Task(taskName, taskDescription, developerDetails, taskDuration, taskCount);
+                    tasks[taskCount] = newTask; // Store the task in the array
+                    totalHours += newTask.returnTotalHours(); // Accumulate total hours
+                    taskCount++; // Increment task count
+
+                    // Display task details
+                    JOptionPane.showMessageDialog(null, newTask.printTaskDetails());
+                    System.out.println("Task successfully captured.");
+                } else {
+                    System.out.println("Maximum number of tasks reached.");
+                }
+            } else if (option == 2) {
+                System.out.println("Coming soon");
+            } else if (option == 3) {
+                System.out.println("Exiting application. Goodbye!");
+                break; // Exit the loop
+                JOptionPane.showMessageDialog(null, "Invalid option. Please try again.");
         }
 
        
