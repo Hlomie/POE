@@ -10,14 +10,20 @@ package com.mycompany.poep1;
  */
 public class accountLogin {
 
-    private String storedUsername;
+   
     private String storedFirstname;
     private String storedLastname;
+    private String storedUsername;
     private String storedPassword;
 
-    public accountLogin() {
-        
+    public accountLogin(String firstname,String lastname,String username, String password) {
+        this.storedFirstname = firstname;
+        this.storedLastname =lastname;
+        this.storedUsername = username;
+        this.storedPassword = password;
     }
+    
+    
     //Method 1: Boolean checkUserName 
     public boolean checkUserName(String username) {
         //Ensure that the username contains underscore and is no more than 5 characters
@@ -40,7 +46,7 @@ public class accountLogin {
         return hasNum && hasCap && hasLow && hasSpecial;
     }
     //Method 3: String registerUser
-    public String registerUser (String username, String firstname, String lastname, String password) {
+    public String registerUser (String username, String password) {
         //Register user
         if (!checkUserName(username)) {
             return "Username is incorrectly formatted. It must contain an underscore and be no more than 5 characters.";
@@ -48,8 +54,6 @@ public class accountLogin {
             return "Password does not meet complexity requirements. It must be at least 8 characters long, contain a capital letter, a number, and a special character.";
         } else {
             this.storedUsername = username;
-            this.storedFirstname = firstname;
-            this.storedLastname = lastname;
             this.storedPassword = password;
             return "User  has been registered successfully!";
         }
@@ -58,5 +62,9 @@ public class accountLogin {
     public boolean loginUser (String username, String password) {
         //verify login details
         return username.equals(this.storedUsername) && password.equals(this.storedPassword);
+    }
+
+    Object returnLoginStatus(String kyle, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

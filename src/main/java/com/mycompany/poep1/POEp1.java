@@ -1,11 +1,11 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
+    
 package com.mycompany.poep1;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
-
+import javax.swing.*;
 
 
 /**
@@ -17,21 +17,29 @@ public class POEp1 {
     public static void main(String[] args) {
         //create scanner to read outputs
       Scanner input = new Scanner(System.in);
-        accountLogin login = new accountLogin();
-         System.out.print("Enter your Username: ");
-        String username = input.nextLine();
+       
+        
+        final JDialog dialog = new JDialog();
+        dialog.setAlwaysOnTop(true);
 
         System.out.print("Enter your Firstname: ");
         String firstname = input.nextLine();
 
         System.out.print("Enter your Lastname: ");
         String lastname = input.nextLine();
+        
+          System.out.print("Enter your Username: ");
+        String username = input.nextLine();
 
         System.out.print("Enter your Password: ");
         String password = input.nextLine();
         
+        
+        // Create an instance of accountLogin with the provided username, password, firstname, and lastname
+        accountLogin login = new accountLogin(firstname, lastname, username, password);
+        
         //register user
-         String registrationMessage = login.registerUser(username, firstname, lastname, password);
+         String registrationMessage = login.registerUser(username, password);
         System.out.println(registrationMessage);
         
         // Check login status if registration was successful
@@ -46,17 +54,19 @@ public class POEp1 {
             
             //Check login status
             if (login.loginUser(loginUsername, loginPassword)) {
-            JOptionPane.showMessageDialog(null,"Welcome to EasyKanban, " + firstname + " " + lastname + "!");
+            JOptionPane.showMessageDialog(dialog,"Welcome to EasyKanban, " + firstname + " " + lastname + "!");
 
            //Manage Task
            manageTasks(input);
             }else{
-               JOptionPane.showMessageDialog(null,"Login failed. Exiting application.");
+               JOptionPane.showMessageDialog(dialog,"Login failed. Exiting application.");
             }
             input.close();
     }
     
         private static void manageTasks(Scanner input){
+            JDialog dialog = new JDialog();
+        dialog.setAlwaysOnTop(true);
             //Ask user how many tasks they would like to enter
             int numOfTasks = Integer.parseInt(JOptionPane.showInputDialog("How many tasks would you like to enter? "));
             Task[] tasks = new Task[numOfTasks];
@@ -75,7 +85,7 @@ public class POEp1 {
                     
                     // Check task description length
                     if (taskDescription.length() > 50) {
-                        JOptionPane.showMessageDialog(null,"Please enter a task description of less than 50 characters.");
+                        JOptionPane.showMessageDialog(dialog,"Please enter a task description of less than 50 characters.");
                         continue; 
                     }
                     
@@ -111,7 +121,8 @@ public class POEp1 {
                      // Create a new Task object
                     Task newTask = new Task(taskName, taskDescription, developerDetails, taskDuration, taskCount, taskStatus);
                     tasks[taskCount] = newTask; 
-                  
+                    System.out.print("Enter your Username: ");
+                    String username = input.nextLine();
                     taskCount++; 
 
                     // Display task details
@@ -130,7 +141,7 @@ public class POEp1 {
             }
         }
 
-        
+       
         
         // Display total hours
        StringBuilder taskDetails = new StringBuilder("Tasks Entered:\n");
@@ -143,9 +154,10 @@ public class POEp1 {
     }
     
        
-    JOptionPane.showMessageDialog(null,"Total hours: " + totalHours);
-     JOptionPane.showMessageDialog(null, taskDetails.toString());
+    JOptionPane.showMessageDialog(dialog,"Total hours: " + totalHours);
+     JOptionPane.showMessageDialog(dialog, taskDetails.toString());
+     
+    dialog.dispose();
  }
-
-        }
-//hill lilll
+}
+        
