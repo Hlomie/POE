@@ -22,8 +22,6 @@ public class accountLogin {
         this.storedUsername = username;
         this.storedPassword = password;
     }
-    
-    
     //Method 1: Boolean checkUserName 
     public boolean checkUserName(String username) {
         //Ensure that the username contains underscore and is no more than 5 characters

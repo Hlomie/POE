@@ -24,7 +24,7 @@ package com.mycompany.poep1;
         this.taskDuration = taskDuration;
         this.taskNumber = taskNumber;
         this.taskID = createTaskID();
-        this.taskStatus = taskStatus; 
+        this.taskStatus = "To Do"; 
         
     }
    
