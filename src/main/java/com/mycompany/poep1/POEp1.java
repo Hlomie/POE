@@ -118,26 +118,33 @@ public class POEp1 {
                         JOptionPane.showMessageDialog(null, "Task successfully captured.");
                     } else {
                         JOptionPane.showMessageDialog(null, "Maximum number of tasks reached.");
+                        
+                       
+                          
                     }
                     break;
                 case 2:
                     JOptionPane.showMessageDialog(null, "Coming soon");
                     break;
+                    
                 case 3:
+                   JOptionPane.showMessageDialog(null, "Total hours worked on tasks: " + totalHours);
+                   break;
+                    
+                case 4:
                     JOptionPane.showMessageDialog(null, "Exiting application. Goodbye!");
                     return; // Exit the method and end the application
+
                 default:
                     JOptionPane.showMessageDialog(null, "Invalid option. Please try again.");
                     break;
             }
-        }
+        }}}
                 
-        // Display total hours
+       
       
- }
 
-
-    }
+    
 
       
 

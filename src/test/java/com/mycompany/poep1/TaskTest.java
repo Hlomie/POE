@@ -16,43 +16,6 @@ import static org.junit.Assert.*;
  */
 public class TaskTest {
     
-    public TaskTest() {
-    }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
-    @Test
-    public void testCheckTaskDescription() {
-    }
-
-    @Test
-    public void testSetTaskStatus() {
-    }
-
-    @Test
-    public void testGetTaskDuration() {
-    }
-
-    @Test
-    public void testCreateTaskID() {
-    }
-
-    @Test
-    public void testPrintTaskDetails() {
-    }
-
-    @Test
-    public void testReturnTotalHours() {
-    }
-    
-}
+   
+}  
