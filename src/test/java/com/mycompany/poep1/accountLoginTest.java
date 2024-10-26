@@ -7,6 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+
 /**
  *
  * @author RC_Student_lab
@@ -14,90 +15,47 @@ import static org.junit.Assert.assertFalse;
 
 public class accountLoginTest {
 
-    // Test that the checkUserName method returns true when the username is correct
-    @Test
+  @Test
     public void testCheckUserNameCorrect() {
-        accountLogin login = new accountLogin();
-        assertTrue(login.checkUserName("kyl_1"));
+        accountLogin login = new accountLogin("John", "Doe", "kyl_1", "Ch&&sec@ke99!");
+        String result = login.registerUser ("kyl_1", "John", "Doe", "Ch&&sec@ke99!");
+        assertEquals("User   has been registered successfully!", result);
+        
+        // Simulate login and check return message
+        assertEquals("welcomeJohn,Doe it is great to see you.", login.loginUser ("kyl_1", "Ch&&sec@ke99!"));
+        assertTrue(login.loginUser  ("kyl_1", "Ch&&sec@ke99!"));
     }
 
-    // Test that the checkUserName method returns false when the username is incorrect
     @Test
     public void testCheckUserNameIncorrect() {
-        accountLogin login = new accountLogin();
-        assertFalse(login.checkUserName("kyle!!!!!!!"));
+        accountLogin login = new accountLogin("John", "Doe", "kyl_1", "Ch&&sec@ke99!");
+        String result = login.registerUser ("kyle!!!!!", "John", "Doe", "Ch&&sec@ke99!");
+        assertEquals("Username is incorrectly formatted. It must contain an underscore and be no more than 5 characters.", result);
+        
+        // Simulate login and check return message
+        assertEquals("Username is not correctly formatted, please ensure that your username contains an underscore and is no more than 5 characters in length.", login.loginUser ("kyle!!!!!", "Ch&&sec@ke99!"));
+        assertFalse(login.loginUser  ("kyle!!!!!", "Ch&&sec@ke99!"));
     }
 
-    // Test that the checkPasswordComplexity method returns true when the password is correct
     @Test
     public void testCheckPasswordComplexityCorrect() {
-        accountLogin login = new accountLogin();
-        assertTrue(login.checkPasswordComplexity("Ch&&sec@ke99!"));
+        accountLogin login = new accountLogin("John", "Doe", "kyl_1", "Ch&&sec@ke99!");
+        String result = login.registerUser ("kyl_1", "John", "Doe", "Ch&&sec@ke99!");
+        assertEquals("User   has been registered successfully!", result);
+        
+        // Simulate login and check return message
+        assertEquals("Password successfully captured.", login.loginUser  ("kyl_1", "Ch&&sec@ke99!"));
+        assertTrue(login.loginUser ("kyl_1", "Ch&&sec@ke99!"));
     }
 
-    // Test that the checkPasswordComplexity method returns false when the password is incorrect
     @Test
     public void testCheckPasswordComplexityIncorrect() {
-        accountLogin login = new accountLogin();
-        assertFalse(login.checkPasswordComplexity("password"));
-    }
-
-    // Test that the registerUser method returns the expected message when the username and password are correct
-    @Test
-    public void testRegisterUserSuccess() {
-        accountLogin login = new accountLogin();
-        assertEquals("User has been registered successfully!", login.registerUser("kyl_1", "Ch&&sec@ke99!"));
-    }
-
-    // Test that the registerUser method returns the expected message when the username is incorrect
-    @Test
-    public void testRegisterUserUsernameIncorrect() {
-        accountLogin login = new accountLogin();
-        assertEquals("Username is incorrectly formatted. It must contain an underscore and be no more than 5 characters.", login.registerUser("kyle!!!!!!!", "Ch&&sec@ke99!"));
-    }
-
-    // Test that the registerUser method returns the expected message when the password is incorrect
-    @Test
-    public void testRegisterUserPasswordIncorrect() {
-        accountLogin login = new accountLogin();
-        assertEquals("Password does not meet complexity requirements. It must be at least 8 characters long, contain a capital letter, a number, and a special character.", login.registerUser("kyl_1", "password"));
-    }
-
-    // Test that the loginUser method returns true when the username and password are correct
-    @Test
-    public void testLoginUserSuccess() {
-        accountLogin login = new accountLogin();
-        login.registerUser("kyl_1", "Ch&&sec@ke99!");
-        assertTrue(login.loginUser("kyl_1", "Ch&&sec@ke99!"));
-    }
-
-    // Test that the loginUser method returns false when the username or password is incorrect
-    @Test
-    public void testLoginUserFailure() {
-        accountLogin login = new accountLogin();
-        login.registerUser("kyl_1", "Ch&&sec@ke99!");
-        assertFalse(login.loginUser("kyle", "password"));
-    }
-
-    // Test that the returnLoginStatus method returns the expected message when the login is successful
-    @Test
-    public void testReturnLoginStatusSuccess() {
-        accountLogin login = new accountLogin();
-        login.registerUser("kyl_1", "Ch&&sec@ke99!");
-        assertEquals("Login successful. Welcome!", login.returnLoginStatus("kyl_1", "Ch&&sec@ke99!"));
-    }
-
-    // Test that the returnLoginStatus method returns the expected message when the login fails
-    @Test
-    public void testReturnLoginStatusFailure() {
-        accountLogin login = new accountLogin();
-        login.registerUser("kyl_1", "Ch&&sec@ke99!");
-        assertEquals("Login failed. Incorrect username or password.", login.returnLoginStatus("kyle", "password"));
+        accountLogin login = new accountLogin("John", "Doe", "kyl_1", "Ch&&sec@ke99!");
+        String result = login.registerUser ("kyl_1", "John", "Doe", "password");
+        assertEquals("Password does not meet complexity requirements. It must be at least 8 characters long, contain a capital letter, a number, and a special character.", result);
+        
+        // Simulate login and check return message
+        assertEquals("Password is not correctly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number and a special character.", login.loginUser  ("kyl_1", "password"));
+        assertFalse(login.loginUser ("kyl_1", "password"));
     }
 }
-
-   
-
-    
-
-
