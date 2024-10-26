@@ -66,6 +66,8 @@ public class POEp1 {
         Task[] tasks = new Task[numOfTasks];
         int totalHours = 0;
         int taskCount = 0;
+        
+        
 
         while (true) {
             String menu = "Menu:\n1) Add Task\n2) Show Report\n3) Quit\nChoose an option:";
@@ -117,21 +119,25 @@ public class POEp1 {
                         JOptionPane.showMessageDialog(null, newTask.printTaskDetails());
                         JOptionPane.showMessageDialog(null, "Task successfully captured.");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Maximum number of tasks reached.");
-                        
-                       
-                          
+                        JOptionPane.showMessageDialog(null, "Maximum number of tasks reached.");                       
                     }
                     break;
                 case 2:
+                    
                     JOptionPane.showMessageDialog(null, "Coming soon");
                     break;
                     
                 case 3:
-                   JOptionPane.showMessageDialog(null, "Total hours worked on tasks: " + totalHours);
-                   break;
-                    
-                case 4:
+                
+                   //Display task summary
+                    String taskSummary = "Task Summary: \n\n";
+                    for(int i = 0; i < taskCount; i++){
+                    taskSummary += tasks[i].printTaskDetails() + "\n\n";
+                    }
+                      JOptionPane.showMessageDialog(null, taskSummary, "Task Summary", JOptionPane.INFORMATION_MESSAGE);
+                      JOptionPane.showMessageDialog(null, "Total hours worked on tasks: " + totalHours);
+                   
+                      
                     JOptionPane.showMessageDialog(null, "Exiting application. Goodbye!");
                     return; // Exit the method and end the application
 
@@ -139,7 +145,10 @@ public class POEp1 {
                     JOptionPane.showMessageDialog(null, "Invalid option. Please try again.");
                     break;
             }
-        }}}
+            
+        }
+    }
+}
                 
        
       

@@ -24,7 +24,7 @@ package com.mycompany.poep1;
         this.taskDuration = taskDuration;
         this.taskNumber = taskNumber;
         this.taskID = createTaskID();
-        this.taskStatus = "To Do"; 
+        this.taskStatus = taskStatus; 
         
     }
    
@@ -41,10 +41,11 @@ package com.mycompany.poep1;
     }
     
     public String createTaskID  (){
-        String firstTwoLetters = taskName.substring(0, 2).toUpperCase();
-        String lastThreeLetters = developerDetails.substring(developerDetails.length() - 3).toUpperCase();
+         String firstTwoLetters = taskName.length() >= 2 ? taskName.substring(0, 2).toUpperCase() : taskName.toUpperCase();
+        String lastThreeLetters = developerDetails.length() >= 3 ? developerDetails.substring(developerDetails.length() - 3).toUpperCase() : developerDetails.toUpperCase();
         return firstTwoLetters + ":" + taskNumber + ":" + lastThreeLetters;
     }
+    
     
     public String printTaskDetails() {
         return "Task Status: " + taskStatus + "\n" +
@@ -52,12 +53,12 @@ package com.mycompany.poep1;
                "Task Number: " + taskNumber + "\n" +
                "Task Name: " + taskName + "\n" +
                "Task Description: " + taskDescription + "\n" +
-                "Task ID" +taskID + "\n" +
+                "Task ID " + taskID + "\n" +
                "Duration: " + taskDuration + " hours";
     }
 
-   public int returnTotalHours(){
-       return (int) taskDuration;
+   public double returnTotalHours(){
+       return taskDuration;
     }
  
        
