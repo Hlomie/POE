@@ -138,9 +138,7 @@ public class POEp1 {
                         JOptionPane.showMessageDialog(null, "Maximum number of tasks reached.");                       
                     }
                     break;
-                case 2:
-                    
-                 // Display full report of all tasks
+                case 2: // Display full report of all tasks
                 String taskSummary = "Task Summary: \n\n";
                 for (int i = 0; i < taskCount; i++) {
                     taskSummary += tasks[i].printTaskDetails() + "\n\n";
@@ -149,7 +147,7 @@ public class POEp1 {
                 JOptionPane.showMessageDialog(null, "Total hours worked on tasks: " + totalHours);
                 break;
 
-            case 3:
+            case 3:// Display done tasks
                  StringBuilder doneTasks = new StringBuilder("Done Tasks:\n");
                 for (int i = 0; i < taskCount; i++) {
                     if (taskStatuses[i].equals("Done")) {
@@ -162,7 +160,7 @@ public class POEp1 {
                 break;
 
 
-            case 4: // Display done tasks
+            case 4: // Display longest task duration
                  double maxDuration = 0;
                 String longestTaskDeveloper = "";
                 String longestTaskName = "";
@@ -177,7 +175,7 @@ public class POEp1 {
                 break;
                 
                
-            case 5: // Longest Task Duration
+            case 5: // display search task by name
                  String searchTaskName = JOptionPane.showInputDialog("Enter the task name to search:");
                 boolean taskFound = false;
                 for (int i = 0; i < taskCount; i++) {
@@ -194,7 +192,7 @@ public class POEp1 {
 
                
 
-            case 6: // Search Task by Name
+            case 6: // display search task by developer
                 
                  String searchDeveloper = JOptionPane.showInputDialog("Enter the developer name to search:");
                 StringBuilder developerTasks = new StringBuilder("Tasks for Developer: " + searchDeveloper + "\n");
@@ -213,7 +211,7 @@ public class POEp1 {
                 break;
                 
                
-            case 7: // Search Tasks by Developer
+            case 7: // Delete task
                  String deleteTaskName = JOptionPane.showInputDialog("Enter the task name to delete:");
                 boolean taskDeleted = false;
                 for (int i = 0; i < taskCount; i++) {
@@ -240,7 +238,7 @@ public class POEp1 {
                         
                
 
-            case 8: // Delete Task
+            case 8: // exit application
                 JOptionPane.showMessageDialog(null, "Exiting application. Goodbye!");
                 return;
                 
