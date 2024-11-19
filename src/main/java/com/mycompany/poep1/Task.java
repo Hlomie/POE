@@ -40,6 +40,15 @@ package com.mycompany.poep1;
         return taskDuration;
     }
     
+    public String getTaskName() {
+        return taskName;
+    }
+    
+    public String getDeveloperDetails() {
+        return developerDetails;
+    }
+    
+    
     public String createTaskID  (){
          String firstTwoLetters = taskName.length() >= 2 ? taskName.substring(0, 2).toUpperCase() : taskName.toUpperCase();
         String lastThreeLetters = developerDetails.length() >= 3 ? developerDetails.substring(developerDetails.length() - 3).toUpperCase() : developerDetails.toUpperCase();

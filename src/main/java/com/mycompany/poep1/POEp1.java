@@ -76,6 +76,7 @@ public class POEp1 {
         int taskCount = 0;
         
         
+        
 
         while (true) {
             String menu = "Menu:\n1) Add Task\n2) Show Report\n3)Display Done Tasks\n4) Longest Task Duration\n5) Search Task by Name\n6) Search Tasks by Developer\n7) Delete Task\n8) Quit\nChoose an option:";
@@ -171,16 +172,23 @@ public class POEp1 {
                         longestTaskName = taskNames[i];
                     }
                 }
-                JOptionPane.showMessageDialog(null, "Longest Task:\nDeveloper: " + longestTaskDeveloper + "\nTask Name: " + longestTaskName + "\nDuration: " + maxDuration + " hours", "Longest Task", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Longest Task:\nDeveloper: " 
+                        + longestTaskDeveloper + "\nTask Name: " 
+                        + longestTaskName + "\nDuration: " 
+                        + maxDuration + " hours", 
+                        "Longest Task", JOptionPane.INFORMATION_MESSAGE);
                 break;
                 
                
             case 5: // display search task by name
-                 String searchTaskName = JOptionPane.showInputDialog("Enter the task name to search:");
+                 String searchTaskName = JOptionPane.showInputDialog("Enter the task name to search:"); 
                 boolean taskFound = false;
                 for (int i = 0; i < taskCount; i++) {
                     if (taskNames[i].equalsIgnoreCase(searchTaskName)) {
-                        JOptionPane.showMessageDialog(null, "Task Name: " + taskNames[i] + "\nDeveloper: " + developers[i] + "\nStatus: " + taskStatuses[i], "Task Found", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Task Name: " 
+                                + taskNames[i] + "\nDeveloper: " 
+                                + developers[i] + "\nStatus: " 
+                                + taskStatuses[i], "Task Found", JOptionPane.INFORMATION_MESSAGE);
                         taskFound = true;
                         break;
                     }
@@ -247,7 +255,23 @@ public class POEp1 {
 
             default:
                 JOptionPane.showMessageDialog(null, "Invalid option. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-        }}}}
+        }}}
+private static void manageTasks(Task[] testTasks) {
+    int taskCount = testTasks.length;
+    double totalHours = 0;
+
+    for (Task task : testTasks) {
+        totalHours += task.returnTotalHours();
+    }
+
+    // Display the tasks
+    StringBuilder taskSummary = new StringBuilder("Task Summary: \n\n");
+    for (Task task : testTasks) {
+        taskSummary.append(task.printTaskDetails()).append("\n\n");
+    }
+    JOptionPane.showMessageDialog(null, taskSummary.toString(), "Task Summary", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null, "Total hours worked on tasks: " + totalHours);
+}}
     
    
                     
